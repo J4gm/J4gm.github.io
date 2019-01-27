@@ -54,8 +54,49 @@ hr {
 
 table {
   border: 1px solid black;
+  border-collapse: collapse;
 }
 
 td, th {
   border: 1px solid black;
+  border-collapse: collapse;
+  padding-left: 2px;
+}
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+.list-group-item {
+    padding:.1rem 1.25rem;
+}
+
+tr.ae, td.ae {
+  background-color: #99ff99;
+}
+
+tr.as, td.as {
+  background-color: #ccffcc;
+}
+
+tr.vg, td.vg {
+  background-color: #e6e6ff;
+}
+
+tr.pr, td.pr {
+  background-color: #e6ffe6;
+}
+
+tr.cb, td.cb {
+  background-color: #ffffe6;
+}
+
+tr.bk, td.bk {
+  background-color: #ffccdd;
+}
+
+tr.gn, td.gn {
+  background-color: #ffe5cc;
 }

@@ -59,6 +59,7 @@ h1 {
 
 hr {
   clear: right;
+  background: dimgrey;
 }
 
 table {
@@ -108,4 +109,8 @@ tr.bk, td.bk {
 
 tr.gn, td.gn {
   background-color: #ffe5cc;
+}
+
+.thickheader {
+  height: 2px;
 }

@@ -103,6 +103,14 @@ tr.cb, td.cb {
   background-color: #ffffe6;
 }
 
+tr.cc, td.cc {
+  background-color: #ffffb0;
+}
+
+tr.ab, td.ab {
+  background-color: #ffccb6;
+}
+
 tr.bk, td.bk {
   background-color: #ffccdd;
 }

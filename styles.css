@@ -1,4 +1,4 @@
-p, h1, h2, h3, td, th {
+p, h1, h2, h3, td, th, button {
   font-family: verdana;
   padding: 0px;
   margin: 0px;
@@ -18,34 +18,73 @@ h2 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 32px;
+}
+
+ul {
+  padding-left: 16px;
 }
 
 .quote {
   border-left: 1px solid dimgrey;
   border-radius: 5px;
+  background: #F0F0F0;
   padding: 0px;
 }
 
 .quote p {
-  color: dimgrey;
+  color: #303030;
   margin-left: 16px;
+  margin-right: 16px;
   margin-bottom: 4px;
 }
 
 .quote .alt {
-  color: steelblue;
+  color: #005080;
 }
 
 .quote .quotesrc {
   color: black;
   margin-top: 8px;
-  margin-left: 24px;
+  margin-left: 32px;
+  margin-right: 16px;
   margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.greyed {
+  color: dimgrey;
 }
 
 .note {
   color: dimgrey;
+  background: #FFFFE0;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.noncanon {
+  background: #FFF0F0;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.alttimeline {
+  background: #F0F0FF;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .img-fluid {
@@ -81,6 +120,7 @@ td, th {
 
 .list-group-item {
     padding:.1rem 1.25rem;
+    padding-left: 0px;
 }
 
 tr.ae, td.ae {
@@ -121,4 +161,10 @@ tr.gn, td.gn {
 
 .thickheader {
   height: 2px;
+}
+
+.eltype {
+  color: dimgrey;
+  font-size: 11px;
+  font-style: italic;
 }

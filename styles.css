@@ -176,3 +176,11 @@ tr.gn, td.gn {
   font-size: 11px;
   font-style: italic;
 }
+
+.redtext {
+  color: red;
+}
+
+.greentext {
+  color: green;
+}

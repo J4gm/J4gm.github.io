@@ -132,39 +132,47 @@ td, th {
 }
 
 tr.ae, td.ae {
-  background-color: #99ff99;
+  background-color: #80ff80;
 }
 
 tr.as, td.as {
-  background-color: #ccffcc;
+  background-color: #b0ffb0;
 }
 
 tr.vg, td.vg {
-  background-color: #e6e6ff;
+  background-color: #e0e0ff;
 }
 
 tr.pr, td.pr {
-  background-color: #e6ffe6;
+  background-color: #e0ffe0;
 }
 
 tr.cb, td.cb {
-  background-color: #ffffe6;
-}
-
-tr.cc, td.cc {
   background-color: #ffffb0;
 }
 
+tr.cc, td.cc {
+  background-color: #ffff80;
+}
+
 tr.ab, td.ab {
-  background-color: #ffccb6;
+  background-color: #ffd0d0;
 }
 
 tr.bk, td.bk {
-  background-color: #ffccdd;
+  background-color: #ffb0b0;
 }
 
 tr.gn, td.gn {
-  background-color: #ffe5cc;
+  background-color: #ffd080;
+}
+
+tr.mu, td.mu {
+  background-color: #ffd0ff;
+}
+
+tr.do, td.do {
+  background-color: #d0ffff;
 }
 
 .thickheader {

@@ -110,12 +110,18 @@ hr {
 }
 
 table {
-  border: 1px solid black;
+  border: none;
   border-collapse: collapse;
 }
 
-td, th {
+td {
   border: 1px solid black;
+  border-collapse: collapse;
+  padding-left: 2px;
+}
+
+th {
+  border: none;
   border-collapse: collapse;
   padding-left: 2px;
 }
@@ -156,11 +162,15 @@ tr.cc, td.cc {
 }
 
 tr.ab, td.ab {
-  background-color: #ffd0d0;
+  background-color: #ffc0c0;
 }
 
 tr.bk, td.bk {
-  background-color: #ffb0b0;
+  background-color: #ffa0a0;
+}
+
+tr.en, td.en {
+  background-color: #ffe0e0;
 }
 
 tr.gn, td.gn {
@@ -191,4 +201,22 @@ tr.do, td.do {
 
 .greentext {
   color: green;
+}
+
+.redbg {
+  background-color: red;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.greenbg {
+  background-color: green;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.bluebg {
+  background-color: cyan;
+  width: 1px;
+  white-space: nowrap;
 }

@@ -5,6 +5,11 @@ p, h1, h2, h3, h4, td, th, button {
   margin-bottom: 12px;
 }
 
+ul, ol {
+  font-family: verdana, sans-serif;
+  font-size: 14px;
+}
+
 h4 {
   font-weight: bold;
 }

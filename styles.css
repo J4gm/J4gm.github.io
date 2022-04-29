@@ -129,6 +129,7 @@ hr {
 table {
   border: none;
   border-collapse: collapse;
+  font-size: 14px;
 }
 
 td {
@@ -156,50 +157,62 @@ th {
 
 tr.ae, td.ae {
   background-color: #80ff80;
+  height: 84px;
 }
 
 tr.as, td.as {
   background-color: #b0ffb0;
+  height: 84px;
 }
 
 tr.vg, td.vg {
   background-color: #e0e0ff;
+  height: 84px;
 }
 
 tr.pr, td.pr {
   background-color: #e0ffe0;
+  height: 84px;
 }
 
 tr.cb, td.cb {
   background-color: #ffffb0;
+  height: 84px;
 }
 
 tr.cc, td.cc {
   background-color: #ffff80;
+  height: 84px;
 }
 
 tr.ab, td.ab {
   background-color: #ffc0c0;
+  height: 84px;
 }
 
 tr.bk, td.bk {
   background-color: #ffa0a0;
+  height: 84px;
 }
 
 tr.en, td.en {
   background-color: #ffe0e0;
+  height: 84px;
 }
 
 tr.gn, td.gn {
   background-color: #ffd080;
+  height: 84px;
 }
 
 tr.mu, td.mu {
   background-color: #ffd0ff;
+  height: 84px;
 }
 
 tr.do, td.do {
   background-color: #d0ffff;
+  height: 84px;
 }
 
 .thickheader {

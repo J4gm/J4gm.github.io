@@ -1,1 +1,0 @@
-This is the repository for my personal website. If you are looking for ATChronology, that's moved (https://github.com/J4gm/ATChronology)[here].

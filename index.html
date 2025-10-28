@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jack Mullin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="textures/box.png">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
+                "rapier": "https://cdn.skypack.dev/@dimforge/rapier3d-compat",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
-    <p>test</p>
+    <div class="start" id="start">Click the box to launch!<br>(or hit the [Enter] key)</div>
+    <div class="main-title" id="main-title">
+        <h1>GO AWAY THIS WEBSITE AINT DONE YET</h1>
+        <h1>Jack Mullin</h1>
+        <p>BSc Creative Computing, UAL</p>
+        <p>⤿ Look around ⤾</p>
+        <p>Click a cube for more info<br>(or use [Tab] and [Enter])</p>
+    </div>
+    <div class="panel" id="minecraft">
+        <p><a class="close-button" href="#">[Esc] Close</a></p>
+        <h2>Minecraft Modding</h2>
+        <img src="textures/classic_pipes.png" alt="A screenshot of Minecraft, featuring pipe blocks from the Classic Pipes mod.">
+        <p>Mods are unofficial addons for the game Minecraft, written in the Java programming language. Java was my first programming language and I have been making mods since I was 13 years old. Over that time, I have developed my skills both as a Java developer and as a game designer.</p>
+        <p>My biggest mod to date is <a href="https://www.curseforge.com/minecraft/mc-mods/classic-pipes">Classic Pipes</a>, which implements an entire logistics system into the game for transporting and processing items. You can find the code for it <a href="https://github.com/J4gm/classicpipes">on Github</a>.</p>
+        <p><a href="https://www.curseforge.com/members/jagm11/projects">[Enter] Check out my mods on CurseForge ==></a></p>
+    </div>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

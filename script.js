@@ -125,71 +125,82 @@ addCuboid("floor", 512, 1, 512, 0, 0, 0, new THREE.MeshStandardMaterial({map: fl
 
 let a = 0;
 
+const INTERVAL = 1000 / 60;
+let then = Date.now();
+
 // Animation function.
 function animate() {
 
+    let now = Date.now();
+    let delta = now - then;
     requestAnimationFrame(animate);
 
-    // A simple counter used by some of the animations.
-    a = (a + 1) % 200;
+    if (delta > INTERVAL) {
 
-    // Physics engine doesn't run until the projectile has been clicked.
-    if (started) {
-        world.step();
-    }
+        then = now - (delta % INTERVAL);
 
-    // Sync the positions and rotations of the Three.js meshes with their corresponding Rapier physics objects.
-    for (let i = 0; i < meshes.length; i++) {
-        meshes[i].position.copy(bodies[i].translation());
-        meshes[i].quaternion.copy(bodies[i].rotation());
-    }
+        // A simple counter used by some of the animations.
+        a = (a + 1) % 200;
 
-    // Pulse animation for the meshes. This is visual only and doesn't affect the physics objects.
-    if (a < 30 && orbiting) {
-        let scale = 1 + (15 - Math.abs(a - 15)) * 0.005;
-        scene.getObjectByName("github").scale.set(scale, scale, scale);
-        scene.getObjectByName("linkedin").scale.set(scale, scale, scale);
-        scene.getObjectByName("minecraft").scale.set(scale, scale, scale);
-    }
-    if (a == 30) {
-        scene.getObjectByName("github").scale.set(1, 1, 1);
-        scene.getObjectByName("linkedin").scale.set(1, 1, 1);
-        scene.getObjectByName("minecraft").scale.set(1, 1, 1);
-    }
+        // Physics engine doesn't run until the projectile has been clicked.
+        if (started) {
+            world.step();
+        }
 
-    // Visually rotate the mesh that is being hovered over. This does not change the rotations of the physics object.
-    if (hovered != ""){
-        scene.getObjectByName(hovered).rotation.y += 2 * Math.PI * a / 100;
-    }
+        // Sync the positions and rotations of the Three.js meshes with their corresponding Rapier physics objects.
+        for (let i = 0; i < meshes.length; i++) {
+            meshes[i].position.copy(bodies[i].translation());
+            meshes[i].quaternion.copy(bodies[i].rotation());
+        }
 
-    // A chase cam with a bit of pan while the projectile is in motion.
-    let projPos = new THREE.Vector3(projectile.translation().x, projectile.translation().y, projectile.translation().z);
-    if (projectile.translation().z > 0) {
-        camera.position.z = Math.max(10, projectile.translation().z + 5 + 8 * (40 - projectile.translation().z) / 40);
-        camera.lookAt(projPos);
-    }
-    // Once the projectile has hit the boxes, initialise the orbit cam.
-    else if (!orbiting){
-        controls = new OrbitControls(camera, renderer.domElement);
-        controls.target = projPos;
-        // Prevent the user from looking below the ground.
-        controls.maxPolarAngle = Math.PI / 2;
-        controls.enableZoom = false;
-        controls.enablePan = false;
-        orbiting = true;
-        // Drop the main title onto the screen.
-        document.getElementById("main-title").classList.add("main-title-move");
-        // Change the cursor style to indicate the scene can be dragged.
-        document.body.style.cursor = "grab";
-    }
+        // Pulse animation for the meshes. This is visual only and doesn't affect the physics objects.
+        if (a < 30 && orbiting) {
+            let scale = 1 + (15 - Math.abs(a - 15)) * 0.005;
+            scene.getObjectByName("github").scale.set(scale, scale, scale);
+            scene.getObjectByName("linkedin").scale.set(scale, scale, scale);
+            scene.getObjectByName("minecraft").scale.set(scale, scale, scale);
+        }
+        if (a == 30) {
+            scene.getObjectByName("github").scale.set(1, 1, 1);
+            scene.getObjectByName("linkedin").scale.set(1, 1, 1);
+            scene.getObjectByName("minecraft").scale.set(1, 1, 1);
+        }
 
-    // Update the orbit cam.
-    if (orbiting) {
-        controls.update();
-    }
+        // Visually rotate the mesh that is being hovered over. This does not change the rotations of the physics object.
+        if (hovered != ""){
+            scene.getObjectByName(hovered).rotation.y += 2 * Math.PI * a / 100;
+        }
 
-    // Render.
-    renderer.render(scene, camera);
+        // A chase cam with a bit of pan while the projectile is in motion.
+        let projPos = new THREE.Vector3(projectile.translation().x, projectile.translation().y, projectile.translation().z);
+        if (projectile.translation().z > 0) {
+            camera.position.z = Math.max(10, projectile.translation().z + 5 + 8 * (40 - projectile.translation().z) / 40);
+            camera.lookAt(projPos);
+        }
+        // Once the projectile has hit the boxes, initialise the orbit cam.
+        else if (!orbiting){
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.target = projPos;
+            // Prevent the user from looking below the ground.
+            controls.maxPolarAngle = Math.PI / 2;
+            controls.enableZoom = false;
+            controls.enablePan = false;
+            orbiting = true;
+            // Drop the main title onto the screen.
+            document.getElementById("main-title").classList.add("main-title-move");
+            // Change the cursor style to indicate the scene can be dragged.
+            document.body.style.cursor = "grab";
+        }
+
+        // Update the orbit cam.
+        if (orbiting) {
+            controls.update();
+        }
+
+        // Render.
+        renderer.render(scene, camera);
+
+    }
 
 };
 

@@ -76,7 +76,7 @@ canvas{
     color: white;
     background-color: #1C0B1B;
     border-style: double;
-    border-radius: 10px;
+    border-radius: 20px;
     border-color: #575EEA;
     border-width: 10px;
 }
@@ -94,4 +94,16 @@ img {
     image-rendering: pixelated;
     margin: auto;
     border-radius: 20px;
+}
+
+.tooltip {
+    display: none;
+    position: fixed;
+    color: white;
+    background: black;
+    padding: 5px 15px;
+    border: 4px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 2vh;
 }

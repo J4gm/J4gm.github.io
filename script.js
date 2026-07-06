@@ -16,6 +16,8 @@ let orbiting = false;
 // Holds the name of the currently highlighted mesh.
 let hovered = "";
 
+const tooltip = document.getElementById("tooltip");
+
 // Create Rapier world with Earth gravity.
 const world = new RAPIER.World({x: 0, y: -9.81, z: 0});
 
@@ -99,19 +101,19 @@ function addCuboid(name, sizeX, sizeY, sizeZ, posX, posY, posZ, material, dynami
 // This is the stack of boxes.
 addCuboid("box1", 2, 2, 2, 0, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box2", 2, 2, 2, 3, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
-addCuboid("linkedin", 2, 2, 2, 6, 2, 0, new THREE.MeshStandardMaterial({map: linkedinTexture}), true);
+addCuboid("box3", 2, 2, 2, 6, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box4", 2, 2, 2, -3, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
-addCuboid("box5", 2, 2, 2, -6, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
+addCuboid("linkedin", 2, 2, 2, -6, 2, 0, new THREE.MeshStandardMaterial({map: linkedinTexture}), true);
 addCuboid("box6", 2, 2, 2, 1.5, 4, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box7", 2, 2, 2, -1.5, 4, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
-addCuboid("github", 2, 2, 2, 4.5, 4, 0, new THREE.MeshStandardMaterial({map: githubTexture}), true);
-addCuboid("box9", 2, 2, 2, -4.5, 4, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
+addCuboid("minecraft", 2, 2, 2, 4.5, 4, 0, new THREE.MeshStandardMaterial({map: minecraftTexture}), true);
+addCuboid("github", 2, 2, 2, -4.5, 4, 0, new THREE.MeshStandardMaterial({map: githubTexture}), true);
 addCuboid("box10", 2, 2, 2, 0, 6, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box11", 2, 2, 2, 3, 6, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box12", 2, 2, 2, -3, 6, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box13", 2, 2, 2, 1.5, 8, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box14", 2, 2, 2, -1.5, 8, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
-addCuboid("minecraft", 2, 2, 2, 0, 10, 0, new THREE.MeshStandardMaterial({map: minecraftTexture}), true);
+addCuboid("box15", 2, 2, 2, 0, 10, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 
 // Add the projectile, then give it a punt and a bit of random spin.
 const projectile = addCuboid("projectile", 3, 3, 3, 0, 4, 40, new THREE.MeshStandardMaterial({map: boxTexture}), true);
@@ -177,6 +179,8 @@ function animate() {
         orbiting = true;
         // Drop the main title onto the screen.
         document.getElementById("main-title").classList.add("main-title-move");
+        // Change the cursor style to indicate the scene can be dragged.
+        document.body.style.cursor = "grab";
     }
 
     // Update the orbit cam.
@@ -220,12 +224,23 @@ function getIntersections(e) {
     return raycaster.intersectObjects(scene.children, true);
 }
 
+const tooltips = {
+    "minecraft": "Minecraft mods",
+    "linkedin": "LinkedIn profile",
+    "github": "Github profile"
+}
+
+let buttonDown = false;
+
 // Click listener for the Three.js canvas.
 renderer.domElement.addEventListener('mousedown', event => {
+
+    buttonDown = true;
 
     // Clicking out of a panel closes it.
     if (orbiting) {
         closeAllPanels();
+        document.body.style.cursor = "grabbing";
     }
 
     // Cast a ray.
@@ -264,6 +279,16 @@ renderer.domElement.addEventListener('mousedown', event => {
     
 });
 
+renderer.domElement.addEventListener('mouseup', event => {
+
+    buttonDown = false;
+
+    if (orbiting) {
+        document.body.style.cursor = "grab";
+    }
+
+});
+
 // Remove the teal tint from the hoverable boxes.
 function clearColors() {
     scene.getObjectByName("github").material.color = {isColor: true, r: 1, g: 1, b: 1};
@@ -285,7 +310,17 @@ renderer.domElement.addEventListener('mousemove', event => {
             if (["github", "linkedin", "minecraft"].includes(intersections[0].object.name)) {
                 intersections[0].object.material.color = {isColor: true, r: 1, g: 5, b: 5};
                 hovered = intersections[0].object.name;
+                tooltip.style.left = `${event.clientX + 25}px`;
+                tooltip.style.top = `${event.clientY + 10}px`;
+                tooltip.innerHTML = tooltips[hovered];
+                tooltip.style.display = "block";
+                document.body.style.cursor = "pointer";
             }
+        }
+
+        if (hovered == "") {
+            tooltip.style.display = "none";
+            document.body.style.cursor = buttonDown ? "grabbing" : "grab";
         }
 
     }

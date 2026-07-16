@@ -1,0 +1,156 @@
+body {
+    background: black;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    overflow: hidden;
+}
+
+#container, #summary-container {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#trivia-container {
+    width: 100vw;
+    position: absolute;
+    top: 82vh;
+}
+
+#trivia {
+    width: 36px;
+    height: 36px;
+    margin: auto;
+    color: white;
+    text-align: center;
+    font-size: 24pt;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: help;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#trivia:hover {
+    color: lime;
+    border-color: lime;
+}
+
+#controls {
+    width: 100vw;
+    position: absolute;
+    top: 75vh;
+    justify-content: center;
+    display: flex;
+    pointer-events: none;
+    font-size: 24pt;
+    gap: 20px;
+    font-weight: bold;
+}
+
+#controls button {
+    pointer-events: all;
+    width: 50px;
+    font-size: 24pt;
+    background: none;
+    border: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding-bottom: 8px;
+    transform: translateY(-8px);
+    color: white;
+    cursor: pointer;
+}
+
+#controls button:hover {
+    color: lime;
+    border: 1px solid lime;
+}
+
+#tooltip {
+    display: none;
+    position: fixed;
+    background: black;
+    border: 1px solid white;
+    padding: 5px;
+    max-width: 500px;
+    z-index: 10;
+}
+
+#nav, #summary-nav {
+    margin: auto;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+}
+
+#summary-nav-container {
+    width: 100vw;
+    position: absolute;
+    top: 65vh;
+}
+
+.summary-info {
+    margin: auto;
+    padding: 5px;
+    max-width: 800px;
+    width: 75%;
+    min-width: 300px;
+}
+
+.nav-button {
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    color: lime;
+}
+
+.current-page {
+    color: lime;
+    font-weight: bold;
+}
+
+.be-gone {
+    transform: translateY(100vh);
+}
+
+.page {
+    transition: transform 1s;
+    position: absolute;
+    top: 25px;
+}
+
+#intro-container {
+    width: 100vw;
+    height: 75vh;
+    margin-top: 12vh;
+}
+
+#intro {
+    max-width: 800px;
+    width: 75%;
+    min-width: 300px;
+    height: 100%;
+    margin: auto;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+#continue-main {
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+
+#continue-summary {
+    font-weight: bold;
+    text-decoration-line: underline;
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Clutter</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="js/d3.v7.min.js"></script>
+    <script src="viz.js"></script>
+
+</head>
+<body>
+
+    <div id="nav">
+        <div class="nav-button current-page" id="button-intro">
+            Introduction
+        </div>
+        <div>|</div>
+        <div class="nav-button" id="button-main">
+            History
+        </div>
+        <div>|</div>
+        <div class="nav-button" id="button-summary">
+            Summary
+        </div>
+    </div>
+
+    <div id="tooltip"></div>
+
+    <div class="page" id="intro-page">
+        <div id="intro-container">
+            <div id="intro">
+                Loading data...
+            </div>
+        </div>
+    </div>
+
+    <div class="page be-gone" id="main-page">
+        <div id="controls">
+            <button id="prev" style="display: none;">←</button>
+            <div id="year">1957</div>
+            <button id="next">→</button>
+        </div>
+        <div id="trivia-container">
+            <div id="trivia">
+                i
+            </div>
+            <div id="continue-summary" class="nav-button" style="display: none;">
+                Continue ->
+            </div>
+        </div>
+        <div id="container"></div>
+    </div>
+
+    <div class="page be-gone" id="summary-page">
+        <div id="summary-container"></div>
+        <div id="summary-nav-container">
+            <div id="summary-nav">
+                <div class="nav-button current-page" id="button-countries">
+                    Countries
+                </div>
+                <div>|</div>
+                <div class="nav-button" id="button-decades">
+                    Decades
+                </div>
+                <div>|</div>
+                <div class="nav-button" id="button-us">
+                    USA
+                </div>
+                <div>|</div>
+                <div class="nav-button" id="button-constellations">
+                    Constellations
+                </div>
+            </div>
+            <div class="summary-info" id="countries-info">
+                Here is a complete summary of every satellite ever launched into space, coloured by country. The yellow band at the top is the Cold War, during which the Soviet Union was especially active. The colourful region below represents a peak in international cooperation during the 90s and early 2000s. After that, the chart is dominated by the United States and Starlink.
+            </div>
+            <div class="summary-info" id="decades-info" style="display: none;">
+                Here, the chart is coloured by decade of launch. The number of launches has vastly accelerated in the 2020s, with <span id="2020s-percentage"></span>% of all satellites in history launching this decade; and we are only halfway through it.
+            </div>
+            <div class="summary-info" id="us-info" style="display: none;">
+                <span id="us-percentage"></span>% of all satellites belong to the United States, or to American private companies.
+            </div>
+            <div class="summary-info" id="constellations-info" style="display: none;">
+                At least <span id="constellations-percentage"></span>% of all satellites are part of multiple-payload launches for communications constellations, with by far the largest constellation being Starlink.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

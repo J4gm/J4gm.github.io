@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const GITHUB = "https://github.com/J4gm";
 const LINKEDIN = "https://www.linkedin.com/in/jack-mullin-001922188/";
-const CURSEFORGE = "https://www.curseforge.com/members/jagm11/projects";
+const CURSEFORGE = "https://modrinth.com/user/J4gm";
 
 // Wait for the physics engine to start.
 await RAPIER.init();
@@ -53,6 +53,7 @@ const floorTexture = loadTexture("textures/floor.png");
 const githubTexture = loadTexture("textures/github.png");
 const linkedinTexture = loadTexture("textures/linkedin.png");
 const minecraftTexture = loadTexture("textures/minecraft.png");
+const webDesignTexture = loadTexture("textures/web_design.png")
 floorTexture.wrapS = THREE.RepeatWrapping;
 floorTexture.wrapT = THREE.RepeatWrapping;
 floorTexture.repeat.set( 128, 128 );
@@ -101,7 +102,7 @@ function addCuboid(name, sizeX, sizeY, sizeZ, posX, posY, posZ, material, dynami
 // This is the stack of boxes.
 addCuboid("box1", 2, 2, 2, 0, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("box2", 2, 2, 2, 3, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
-addCuboid("box3", 2, 2, 2, 6, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
+addCuboid("web-design", 2, 2, 2, 6, 2, 0, new THREE.MeshStandardMaterial({map: webDesignTexture}), true);
 addCuboid("box4", 2, 2, 2, -3, 2, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
 addCuboid("linkedin", 2, 2, 2, -6, 2, 0, new THREE.MeshStandardMaterial({map: linkedinTexture}), true);
 addCuboid("box6", 2, 2, 2, 1.5, 4, 0, new THREE.MeshStandardMaterial({map: boxTexture}), true);
@@ -159,11 +160,13 @@ function animate() {
             scene.getObjectByName("github").scale.set(scale, scale, scale);
             scene.getObjectByName("linkedin").scale.set(scale, scale, scale);
             scene.getObjectByName("minecraft").scale.set(scale, scale, scale);
+            scene.getObjectByName("web-design").scale.set(scale, scale, scale);
         }
         if (a == 30) {
             scene.getObjectByName("github").scale.set(1, 1, 1);
             scene.getObjectByName("linkedin").scale.set(1, 1, 1);
             scene.getObjectByName("minecraft").scale.set(1, 1, 1);
+            scene.getObjectByName("web-design").scale.set(1, 1, 1);
         }
 
         // Visually rotate the mesh that is being hovered over. This does not change the rotations of the physics object.
@@ -216,6 +219,8 @@ window.addEventListener("resize", () => {
 // Close all the side panels.
 function closeAllPanels(){
     document.getElementById("minecraft").classList.remove("panel-move");
+    document.getElementById("web-design").classList.remove("panel-move");
+    document.getElementById("contact").classList.remove("panel-move");
     document.getElementById("main-title").classList.add("main-title-move");
 }
 
@@ -237,6 +242,7 @@ function getIntersections(e) {
 
 const tooltips = {
     "minecraft": "Minecraft mods",
+    "web-design": "Web design and data visualisation",
     "linkedin": "LinkedIn profile",
     "github": "Github profile"
 }
@@ -265,6 +271,7 @@ renderer.domElement.addEventListener('mousedown', event => {
                 document.getElementById("start").classList.add("be-gone");
                 break;
             case "minecraft":
+            case "web-design":
                 // Open the panel corresponding to the cube that was clicked.
                 let panel = document.getElementById(intersections[0].object.name);
                 panel.classList.add("panel-move");
@@ -305,6 +312,7 @@ function clearColors() {
     scene.getObjectByName("github").material.color = {isColor: true, r: 1, g: 1, b: 1};
     scene.getObjectByName("linkedin").material.color = {isColor: true, r: 1, g: 1, b: 1};
     scene.getObjectByName("minecraft").material.color = {isColor: true, r: 1, g: 1, b: 1};
+    scene.getObjectByName("web-design").material.color = {isColor: true, r: 1, g: 1, b: 1};
 }
 
 // Mouse move listener.
@@ -318,7 +326,7 @@ renderer.domElement.addEventListener('mousemove', event => {
         let intersections = getIntersections(event);
         if (intersections.length > 0) {
             // Update which mesh is being hovered over and add a teal tint.
-            if (["github", "linkedin", "minecraft"].includes(intersections[0].object.name)) {
+            if (["github", "linkedin", "minecraft", "web-design"].includes(intersections[0].object.name)) {
                 intersections[0].object.material.color = {isColor: true, r: 1, g: 5, b: 5};
                 hovered = intersections[0].object.name;
                 tooltip.style.left = `${event.clientX + 25}px`;
@@ -355,6 +363,9 @@ document.body.addEventListener('keydown', event => {
                     hovered = "minecraft";
                     break;
                 case "minecraft":
+                    hovered = "web-design";
+                    break;
+                case "web-design":
                     hovered = "github";
                     break;
                 default:
@@ -430,3 +441,10 @@ document.body.addEventListener('keyup', event => {
 
 // Add canvas to page.
 document.body.appendChild(renderer.domElement);
+
+document.getElementById("contact-link").addEventListener("click", () => {
+    let panel = document.getElementById("contact");
+    panel.classList.add("panel-move");
+    panel.focus();
+    document.getElementById("main-title").classList.remove("main-title-move");
+});
